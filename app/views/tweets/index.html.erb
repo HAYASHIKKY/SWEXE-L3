@@ -1,0 +1,28 @@
+<p><%= link_to '新規投稿', '/tweets/new' %></p>
+
+
+
+<% @Tweets.each do |tweet| %>
+<p>
+    投稿日時&nbsp;&nbsp;
+    <%=if ((Time.zone.now - tweet.tdate ).floor / 86400 ) >=1 
+        ((Time.zone.now - tweet.tdate ).floor / 86400).to_s + "日前  " 
+    　 else
+            if ((Time.zone.now - tweet.tdate ).floor / 3600 ) >=1 
+                ((Time.zone.now - tweet.tdate ).floor / 3600).to_s + "時間前  " 
+            else 
+              ((Time.zone.now - tweet.tdate ).floor / 60).to_s + "分前  "
+            end  
+        end%> 
+    &nbsp;&nbsp;投稿内容&nbsp;&nbsp;
+    <%= tweet.message %>&nbsp;&nbsp;
+    <%= link_to '削除' , "/tweets/#{tweet.id}", method: :delete %>&nbsp;
+    <%= link_to '表示' , "/tweets/#{tweet.id}" %>&nbsp;
+    <%= link_to '編集' , "/tweets/#{tweet.id}/edit" %>&nbsp;
+</p>
+
+<% end %>
+
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>

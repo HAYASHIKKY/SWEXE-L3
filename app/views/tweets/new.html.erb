@@ -1,0 +1,19 @@
+<% if @Tweet.errors.present? %>
+  <h3>エラーがあります。</h3>
+  <ul>
+    <% @Tweet.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<%= form_for @Tweet do |t| %>
+  <%= t.label :message ,"投稿内容" %>
+  <br>
+  <%= t.text_area :message, size: "50x20" , class: "form-control"  %>
+  <br>
+
+  <%= t.submit '投稿'%>
+
+<% end %>
