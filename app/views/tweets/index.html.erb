@@ -1,11 +1,21 @@
 <html>
     <body>
-        <div id = "page">
-            <div id = "pageSub">
-                <p><%= link_to '新規投稿', '/tweets/new' %></p>
+        
+        <div class = "main">
+             <div class = "pageSub">
+                <%= render 'layouts/form' %>
+                <div class = "button">
+                <p><%= link_to 'ツイートする', tweets_new_path %></p>
+                </div>
             </div>
-            <div id = "pageBody">
-            
+
+            <div class = "pageBody">
+                <nav><ul>
+                    <li><a href =>ツイート</a></li>
+                    <li><a href =>ツイートと返信</a></li>
+                    <li><a href =>メディア</a></li>
+                    <li><a href =>いいね</a></li>
+                </nav></ul>
                 <% @Tweets.each do |tweet| %>
                 <p>
                     投稿日時&nbsp;&nbsp;
@@ -23,6 +33,7 @@
                     <%= link_to '削除' , "/tweets/#{tweet.id}", method: :delete %>&nbsp;
                     <%= link_to '表示' , "/tweets/#{tweet.id}" %>&nbsp;
                     <%= link_to '編集' , "/tweets/#{tweet.id}/edit" %>&nbsp;
+                    
                 </p>
                 
                 <% end %>
@@ -31,6 +42,6 @@
                 <%= flash[:notice] %>
                 <% end %>
             </div>
-         </div>
+        </div>
     </body>
 </html>
